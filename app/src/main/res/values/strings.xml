@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">כניסה מותנית</string>
+    <string name="hint_password">הזן סיסמא</string>
+    <string name="btn_login">כניסה</string>
+    <string name="title_hints">רמזים לכניסה</string>
+    <string name="success_title">הצלחה!</string>
+    <string name="btn_back">חזרה למסך הראשי</string>
+    <string name="password_incorrect">סיסמא שגויה, נסה שוב</string>
+    <string name="conditions_failed">לא עמדת בכל התנאים, נסה שוב</string>
+    <string name="data_updated">נתונים התעדכנו!</string>
+    <string name="checking_conditions">בודק תנאים...</string>
+</resources>
