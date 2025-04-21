@@ -48,14 +48,6 @@ Conditional Login provides multiple authentication methods, each represented as 
 - SMS access for message verification
 - Ambient light sensor for light-level verification
 
-## Permissions
-
-The app requires the following permissions:
-- `READ_SMS`: For SMS verification
-- `BLUETOOTH`, `BLUETOOTH_ADMIN`, `BLUETOOTH_CONNECT`, `BLUETOOTH_SCAN`: For Bluetooth authentication
-- `ACCESS_FINE_LOCATION`: Required for Bluetooth scanning on older Android versions
-- System settings permission: For reading screen brightness
-
 ## Installation
 
 1. Clone the repository
@@ -71,8 +63,35 @@ The app requires the following permissions:
 
 ## Customization
 
-You can customize the authentication parameters by modifying the following:
-- `RecentPhotoVerification.kt`: Change `PASSWORD` constant to detect different text
-- `SmsVerification.kt`: Modify `trustedNumber` and `expectedMessage` for SMS verification
-- `BluetoothContextAuthentication.kt`: Update `targetDeviceName` and `targetDeviceAddress`
-- `LightVerification.kt`: Adjust `threshold` for light sensitivity
+You can customize the authentication parameters by modifying the constants in the `Constants.kt` file:
+
+```kotlin
+package com.example.conditionallogin.utils
+
+class Constants {
+    object BL_TARGET{
+        const val TARGET_DEVICE_NAME = "Bluetooth Device"
+        const val TARGET_DEVICE_ADDRESS = "62:13:4F:EF:E2:67"
+        const val BLUETOOTH_PERMISSION_REQUEST_CODE = 2
+    }
+
+    object LIGHT_VERIFICATION {
+        const val THRESHOLD = 10f
+    }
+
+    object RECENT_PHOTO_VERIFICATION {
+        const val PASSWORD = "1234"
+    }
+
+    object SMS_VERIFICATION {
+        const val TRUSTED_NUMBER = "+972123456789"
+        const val EXPECTED_MESSAGE = "hello"
+    }
+}
+```
+
+This allows you to:
+- Change the target Bluetooth device for authentication
+- Adjust the light sensor threshold value
+- Modify the text string for photo verification
+- Update the trusted phone number and expected message content for SMS verification
