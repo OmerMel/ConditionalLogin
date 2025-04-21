@@ -2,8 +2,8 @@ package com.example.conditionallogin.utils
 
 class Constants {
     object BL_TARGET{
-        const val TARGET_DEVICE_NAME = "Galaxy Buds Pro (E377)"
-        const val TARGET_DEVICE_ADDRESS = "64:03:7F:ED:E3:77"
+        const val TARGET_DEVICE_NAME = "Bluetooth Device"
+        const val TARGET_DEVICE_ADDRESS = "62:13:4F:EF:E2:67"
         const val BLUETOOTH_PERMISSION_REQUEST_CODE = 2
     }
 
@@ -16,7 +16,7 @@ class Constants {
     }
 
     object SMS_VERIFICATION {
-        const val TRUSTED_NUMBER = "+972528957959"
+        const val TRUSTED_NUMBER = "+972123456789"
         const val EXPECTED_MESSAGE = "hello"
     }
 }
