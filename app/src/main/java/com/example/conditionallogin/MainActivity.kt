@@ -1,5 +1,6 @@
 package com.example.conditionallogin
 
+import android.content.Intent
 import android.net.Uri
 import android.os.*
 import android.widget.Toast
@@ -11,6 +12,7 @@ import com.example.conditionallogin.conditionals.BluetoothContextAuthentication
 import com.example.conditionallogin.databinding.ActivityMainBinding
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.util.Log
 import com.example.conditionallogin.conditionals.LightVerification
 import com.example.conditionallogin.conditionals.SmsVerification
 
@@ -91,6 +93,7 @@ class MainActivity : AppCompatActivity() {
 
                 bluetoothAuth.execute(this) { success ->
                     if (success) {
+                        isLockBluetoothUnlocked = true
                         Toast.makeText(
                             this,
                             "authentication passed! correct Bluetooth network.",
@@ -159,6 +162,17 @@ class MainActivity : AppCompatActivity() {
                 }
             } else {
                 Toast.makeText(this, "This lock is already unlocked!", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.btnLogin.setOnClickListener {
+            Log.d("LoginButton", "$isLockImageUnlocked, $isLockBrightnessDanceUnlocked, $isLockBluetoothUnlocked, $isLockSmsUnlocked, $isLockLightUnlocked")
+            if (isLockImageUnlocked && isLockBrightnessDanceUnlocked && isLockBluetoothUnlocked && isLockSmsUnlocked && isLockLightUnlocked) {
+                val intent = Intent(this, SuccessActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                Toast.makeText(this, "Please unlock all locks before logging in.", Toast.LENGTH_SHORT).show()
             }
         }
     }
