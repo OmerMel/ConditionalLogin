@@ -8,7 +8,7 @@ Conditional Login provides multiple authentication methods, each represented as 
 
 1. **Photo Verification**: Authenticate by taking a recent photo containing a specific text sequence
 2. **Brightness Dance**: Authenticate by adjusting screen brightness in a specific pattern
-3. **Bluetooth Authentication**: Authenticate by having a trusted Bluetooth device connected
+3. **Bluetooth Authentication**: Authenticate by having a trusted Bluetooth device in the paired list
 4. **SMS Verification**: Authenticate via receiving a specific message from a trusted number
 5. **Light Sensor**: Authenticate by being in a low-light environment
 
@@ -27,8 +27,8 @@ Conditional Login provides multiple authentication methods, each represented as 
 - Provides haptic feedback (vibration) at each successful step
 
 ### Bluetooth Context Authentication
-- Checks for a paired and connected Bluetooth device
-- Verifies the connected device matches a trusted device name or MAC address
+- Checks for a paired Bluetooth device
+- Verifies if device matches a trusted device name or MAC address is in the paired list
 
 ### SMS Verification
 - Checks for recent SMS messages
