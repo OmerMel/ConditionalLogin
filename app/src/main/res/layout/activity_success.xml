@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layoutDirection="ltr"
+    android:padding="16dp"
+    android:gravity="center_horizontal"
+    android:background="@drawable/blue_gradient_background"
+    tools:context=".SuccessActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Congratulations!"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="@color/success"
+        android:layout_marginTop="40dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login successful"
+        android:textSize="20sp"
+        android:textColor="@color/primary_dark"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="40dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Authentication methods:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/primary_dark"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Conditional checks list -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_check_green"
+                android:contentDescription="Verified" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Photo Verification"
+                android:textSize="16sp"
+                android:textColor="@color/primary"
+                android:layout_marginStart="12dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_check_green"
+                android:contentDescription="Verified" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Brightness Dance"
+                android:textSize="16sp"
+                android:textColor="@color/primary"
+                android:layout_marginStart="12dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_check_green"
+                android:contentDescription="Verified" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bluetooth Authentication"
+                android:textSize="16sp"
+                android:textColor="@color/primary"
+                android:layout_marginStart="12dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_check_green"
+                android:contentDescription="Verified" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SMS Verification"
+                android:textSize="16sp"
+                android:textColor="@color/primary"
+                android:layout_marginStart="12dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_check_green"
+                android:contentDescription="Verified" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Light Sensor"
+                android:textSize="16sp"
+                android:textColor="@color/primary"
+                android:layout_marginStart="12dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
