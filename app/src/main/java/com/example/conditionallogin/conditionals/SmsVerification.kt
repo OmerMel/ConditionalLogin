@@ -9,18 +9,17 @@ import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.conditionallogin.MainActivity
+import com.example.conditionallogin.utils.Constants
 
 class SmsVerification(private val context: Context) {
 
     private var onResultCallback: ((Boolean) -> Unit)? = null
-    private val trustedNumber = "+972528957959"
-    private val expectedMessage = "hello"
 
     fun execute(context: Context, onResult: (Boolean) -> Unit) {
         onResultCallback = onResult
 
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_SMS) == PackageManager.PERMISSION_GRANTED) {
-            isRecentMessageFromTrustedContact(trustedNumber, expectedMessage)
+            isRecentMessageFromTrustedContact(Constants.SMS_VERIFICATION.TRUSTED_NUMBER, Constants.SMS_VERIFICATION.EXPECTED_MESSAGE)
         } else {
             // Request location permission if not granted
             ActivityCompat.requestPermissions(
@@ -29,8 +28,6 @@ class SmsVerification(private val context: Context) {
                 1
             )
         }
-
-        onResultCallback?.invoke(false)
     }
 
     private fun isRecentMessageFromTrustedContact(
@@ -45,7 +42,7 @@ class SmsVerification(private val context: Context) {
             val cursor = context.contentResolver.query(
                 uriSms,
                 projection,
-                null, // No selection filter in SQL
+                null,
                 null,
                 "date DESC LIMIT 20" // Get the most recent messages
             )

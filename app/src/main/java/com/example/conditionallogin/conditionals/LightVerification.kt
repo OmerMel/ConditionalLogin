@@ -11,6 +11,7 @@ import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.conditionallogin.MainActivity
+import com.example.conditionallogin.utils.Constants
 
 class LightVerification(
     private val context: Context,
@@ -19,8 +20,6 @@ class LightVerification(
     private var onResultCallback: ((Boolean) -> Unit)? = null
     private var sensorManager: SensorManager? = null
     private var lightSensor: Sensor? = null
-    private var triggered = false
-    private var threshold = 10f
 
     fun execute(context: Context, onResult: (Boolean) -> Unit) {
         onResultCallback = onResult
@@ -56,8 +55,8 @@ class LightVerification(
     override fun onSensorChanged(event: SensorEvent) {
         val lux = event.values[0]
 
-        val result = lux <= threshold
-        Log.d("LightVerification", "Lux: $lux, Threshold: $threshold, Pass: $result")
+        val result = lux <= Constants.LIGHT_VERIFICATION.THRESHOLD
+        Log.d("LightVerification", "Lux: $lux, Threshold: ${Constants.LIGHT_VERIFICATION.THRESHOLD}, Pass: $result")
         stopListening()
         onResultCallback?.invoke(result)
     }

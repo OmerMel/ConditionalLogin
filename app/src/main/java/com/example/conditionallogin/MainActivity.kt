@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.lockBluetooth.setOnClickListener {
-            if(!isLockSmsUnlocked) {
+            if(!isLockBluetoothUnlocked) {
                 vibrateShort()
 
                 bluetoothAuth.execute(this) { success ->

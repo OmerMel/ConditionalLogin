@@ -1,6 +1,5 @@
 package com.example.conditionallogin.conditionals
 
-import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
 import android.content.Context
@@ -11,12 +10,11 @@ import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.conditionallogin.MainActivity
+import com.example.conditionallogin.utils.Constants
 
 class BluetoothContextAuthentication {
 
     private var onResultCallback: ((Boolean) -> Unit)? = null
-    private val targetDeviceName = "Galaxy Buds Pro (E377)"  // Set your target Bluetooth device name
-    private val targetDeviceAddress = "64:03:7F:ED:E3:77"  // Set your target device MAC address
 
     fun execute(context: Context, onResult: (Boolean) -> Unit) {
         onResultCallback = onResult
@@ -46,7 +44,7 @@ class BluetoothContextAuthentication {
             ActivityCompat.requestPermissions(
                 context as MainActivity,
                 missingPermissions,
-                BLUETOOTH_PERMISSION_REQUEST_CODE
+                Constants.BL_TARGET.BLUETOOTH_PERMISSION_REQUEST_CODE
             )
         }
     }
@@ -93,7 +91,7 @@ class BluetoothContextAuthentication {
                 Log.d("Bluetooth", "Checking device: $deviceName ($deviceAddress)")
 
                 // Match either by address (preferred) or by name
-                (deviceAddress == targetDeviceAddress || deviceName == targetDeviceName)
+                (deviceAddress == Constants.BL_TARGET.TARGET_DEVICE_ADDRESS || deviceName == Constants.BL_TARGET.TARGET_DEVICE_NAME)
             } catch (e: SecurityException) {
                 Log.e("Bluetooth", "Error checking device: ${e.message}")
                 false
@@ -103,9 +101,5 @@ class BluetoothContextAuthentication {
 
         Log.d("Bluetooth", "Target device connected: $isTargetDeviceConnected")
         onResultCallback?.invoke(isTargetDeviceConnected)
-    }
-
-    companion object {
-        private const val BLUETOOTH_PERMISSION_REQUEST_CODE = 2
     }
 }

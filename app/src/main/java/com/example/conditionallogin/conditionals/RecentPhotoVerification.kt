@@ -4,6 +4,7 @@ import android.content.Context
 import androidx. exifinterface. media. ExifInterface
 import android.net.Uri
 import androidx.activity.result.ActivityResultLauncher
+import com.example.conditionallogin.utils.Constants
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
@@ -52,14 +53,10 @@ class RecentPhotoVerification(private val launcher: ActivityResultLauncher<Strin
         recognizer.process(image)
             .addOnSuccessListener { visionText ->
                 val text = visionText.text
-                onResultCallback?.invoke(PASSWORD in text)
+                onResultCallback?.invoke(Constants.RECENT_PHOTO_VERIFICATION.PASSWORD in text)
             }
             .addOnFailureListener {
                 onResultCallback?.invoke(false)
             }
-    }
-
-    companion object {
-        private const val PASSWORD = "1234"
     }
 }
