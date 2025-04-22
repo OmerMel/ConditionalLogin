@@ -48,7 +48,7 @@ class LightVerification(
         }
     }
 
-    fun stopListening() {
+    private fun stopListening() {
         sensorManager?.unregisterListener(this)
     }
 

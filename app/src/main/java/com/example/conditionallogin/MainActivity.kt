@@ -1,5 +1,6 @@
 package com.example.conditionallogin
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.*
@@ -70,7 +71,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.lockBrightnessDance.setOnClickListener {
             if (!isLockBrightnessDanceUnlocked) {
-                vibrateShort()
+                vibrateShort(this)
 
                 brightnessDance.execute(this) { success ->
                     if (success) {
@@ -89,7 +90,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.lockBluetooth.setOnClickListener {
             if(!isLockBluetoothUnlocked) {
-                vibrateShort()
+                vibrateShort(this)
 
                 bluetoothAuth.execute(this) { success ->
                     if (success) {
@@ -115,7 +116,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.lockSms.setOnClickListener {
             if(!isLockSmsUnlocked) {
-                vibrateShort()
+                vibrateShort(this)
 
                 smsAuth.execute(this) { success ->
                     if (success) {
@@ -141,7 +142,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.lockLight.setOnClickListener {
             if(!isLockLightUnlocked) {
-                vibrateShort()
+                vibrateShort(this)
 
                 lightVerifier.execute(this) { success ->
                     if (success) {
@@ -177,8 +178,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun vibrateShort() {
-        val vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
+    private fun vibrateShort(context: Context) {
+        val vibrator = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            val vibratorManager = context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+            vibratorManager.defaultVibrator
+        } else {
+            context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        }
         vibrator.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE))
     }
 

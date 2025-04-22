@@ -5,6 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.os.VibratorManager
 import android.provider.Settings
 import android.util.Log
 
@@ -19,7 +20,6 @@ class BrightnessDanceVerification {
         step = 0
 
         // Start listening for brightness changes
-        // This should be triggered manually, or via a repeating check mechanism
         startCheckingBrightness(context)
     }
 
@@ -37,7 +37,7 @@ class BrightnessDanceVerification {
         runnable?.let { handler?.post(it) }
     }
 
-    fun stopChecking() {
+    private fun stopChecking() {
         handler?.removeCallbacks(runnable!!) // Stop the periodic checking
         handler = null
         runnable = null
@@ -75,7 +75,12 @@ class BrightnessDanceVerification {
     }
 
     private fun vibrateShort(context: Context) {
-        val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        val vibrator = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            val vibratorManager = context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+            vibratorManager.defaultVibrator
+        } else {
+            context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        }
         vibrator.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE))
     }
 }
